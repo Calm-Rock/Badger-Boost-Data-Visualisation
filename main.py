@@ -29,7 +29,7 @@ print(lvd4)
 lvd_non_nativeBal_sum = sum(lvd4['nonNativeBalance'])
 
 #Title
-st.title(str(lvd_nativeBal_sum))
+st.title('Badger Boost Data Visualization')
 
 
 
