@@ -41,26 +41,28 @@ def createList(r1, r2):
 df = pd.read_csv('Native_Balance_Historical.csv')
 if list(df['Native Balance'])[-1] == lvd_nativeBal_sum:
 	df_temp = df
+	lvd_native_balance = df_temp
 else:
 	df_temp = df['Native Balance'].append(pd.Series(lvd_nativeBal_sum), ignore_index =True)
 	
 #Appended Data Frame Native Balance
-lvd_native_balance = pd.DataFrame(df_temp, columns = ['Native Balance'])
+	lvd_native_balance = pd.DataFrame(df_temp, columns = ['Native Balance'])
 
 #Appended Data Frame Non Native Balance
 df1 = pd.read_csv('Non_Native_Balance_Historical.csv')
 if list(df1['Non Native Balance'])[-1] == lvd_non_nativeBal_sum:
 	df1_temp = df1
+	lvd_non_Native_balance = df1_temp
 else:
 	df1_temp = df1['Non Native Balance'].append(pd.Series(lvd_non_nativeBal_sum), ignore_index =True)
 
-lvd_non_Native_balance = pd.DataFrame(df1_temp, columns = ['Non Native Balance'])
+	lvd_non_Native_balance = pd.DataFrame(df1_temp, columns = ['Non Native Balance'])
 
 
 #Line Chart
-st.line_chart(lvd_native_balance['Native Balance'])
+st.area_chart(lvd_native_balance['Native Balance'],width=800,height=400)
 
-st.line_chart(lvd_non_Native_balance['Non Native Balance'])
+st.area_chart(lvd_non_Native_balance['Non Native Balance'],width=800,height=400)
 
 #Updating the csv files
 lvd_native_balance.to_csv('Native_Balance_Historical.csv')
